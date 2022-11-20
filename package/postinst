@@ -1,0 +1,47 @@
+#!/bin/bash
+
+if [ "$(systemctl is-active moro-books)" = "active" ]
+then
+    echo "moro-books service is $(systemctl is-active moro-books), stopping"
+    systemctl stop moro-books.service
+fi
+
+package_dir='/usr/share/moro-books/'
+python_virtual_env='python_venv'
+
+# create virtual environment and install utilities
+echo "Creating python virtual environment"
+/usr/bin/python3 -m venv ${package_dir}${python_virtual_env}
+echo "Activating python virtual environment"
+source ${package_dir}${python_virtual_env}/bin/activate
+echo "Installing python dependencies in virtual environment"
+pip3 install -r /usr/share/moro-books/requirements.txt
+
+# create moro-books service file
+cat <<EOF > /etc/systemd/system/moro-books.service
+[Unit]
+Description=The Moro Books Service
+After=network.target
+
+[Service]
+ExecStart=${package_dir}${python_virtual_env}/bin/python3 main.py
+WorkingDirectory=${package_dir}
+StandardOutput=inherit
+StandardError=inherit
+Restart=on-failure
+RestartSec=10
+User=root
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+
+# reload and start systemd services
+echo "Systemd daemon reload"
+systemctl daemon-reload
+echo "Enabling moro-books service"
+systemctl enable moro-books.service
+echo "Starting moro-books service"
+systemctl start moro-books.service

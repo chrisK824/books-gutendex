@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e
+set -x
+
+echo "Starting automated tests."
+pytest /usr/share/moro-books/ -s
+
+echo "# Starting server..."
+python3 /usr/share/moro-books/main.py
