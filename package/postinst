@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [ "$(systemctl is-active moro-books)" = "active" ]
+if [ "$(systemctl is-active gutendex-books)" = "active" ]
 then
-    echo "moro-books service is $(systemctl is-active moro-books), stopping"
-    systemctl stop moro-books.service
+    echo "gutendex-books service is $(systemctl is-active gutendex-books), stopping"
+    systemctl stop gutendex-books.service
 fi
 
-package_dir='/usr/share/moro-books/'
+package_dir='/usr/share/gutendex-books/'
 python_virtual_env='python_venv'
 
 # create virtual environment and install utilities
@@ -15,12 +15,12 @@ echo "Creating python virtual environment"
 echo "Activating python virtual environment"
 source ${package_dir}${python_virtual_env}/bin/activate
 echo "Installing python dependencies in virtual environment"
-pip3 install -r /usr/share/moro-books/requirements.txt
+pip3 install -r /usr/share/gutendex-books/requirements.txt
 
-# create moro-books service file
-cat <<EOF > /etc/systemd/system/moro-books.service
+# create gutendex-books service file
+cat <<EOF > /etc/systemd/system/gutendex-books.service
 [Unit]
-Description=The Moro Books Service
+Description=The Gutendex Books Service
 After=network.target
 
 [Service]
@@ -41,7 +41,7 @@ EOF
 # reload and start systemd services
 echo "Systemd daemon reload"
 systemctl daemon-reload
-echo "Enabling moro-books service"
-systemctl enable moro-books.service
-echo "Starting moro-books service"
-systemctl start moro-books.service
+echo "Enabling gutendex-books service"
+systemctl enable gutendex-books.service
+echo "Starting gutendex-books service"
+systemctl start gutendex-books.service

@@ -1,20 +1,12 @@
-##### Quick summary
-Challenge assignment for Morotech senior python engineer role
-
-#####  Challenge description
-Here at MoroTech we are always looking for ways to expand our general knowledge. A way to do this is
-by reading books! There is a problem though, it�s very difficult to know whether a book is good or not
-before reading it. So, we decided to create a book rating system! As part of this exercise you will create a
-simple API that will help us rate and review the books we have read. You will be able to use your
-technologies of choice to achieve this, unless otherwise explicitly stated.
+#####  Simple project for a book reviews system
 
 #####  Stack 
 * fastAPI web framework
 * sqlite3 database
 
 ##### Docker installation and run (tests and server)
-* `docker build -t morotechgutendex .`
-* `docker run -d -p 9999:9999 morotechgutendex`
+* `docker build -t gutendex .`
+* `docker run -d -p 9999:9999 gutendex`
 * Docker container will firstly run the automated tests and then deploy the web app
 * Access the API at `localhost:9999/v1/`
 * Access the API documentation at `localhost:9999/v1/documentation`
@@ -32,8 +24,8 @@ technologies of choice to achieve this, unless otherwise explicitly stated.
 * Install requirements of app by running the following command:
 `pip3 install -r requirements.txt`
 * Run the automated tests by invoking the `pytest` utility by running the following command:
-`pytest --html=morotech_gutendex_api_report.html`
-* When the test suite has been completed you can see the results by in the html report that has been generated at the same folder named `morotech_gutendex_api_report.html`
+`pytest --html=gutendex_api_report.html`
+* When the test suite has been completed you can see the results by in the html report that has been generated at the same folder named `gutendex_api_report.html`
 *  Run the server `python3 src/main.py`
 *  Access the API at `localhost:9999/v1`
 *  Access the API documentation at `localhost:9999/v1/documentation`

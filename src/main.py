@@ -17,7 +17,7 @@ def get_reviews_db():
         reviews_db.close()
 
 description = """
-Moro Gutendex books API helps people in Moro group
+Gutendex books API helps people
 to easily search for books to read, review a book they read
 and see reviews for recommended books.
 
@@ -33,7 +33,7 @@ You will be able to:
 """
 
 booksAPI = FastAPI(
-    title='Moro Gutendex books API integration',
+    title='Gutendex books API integration',
     description=description,
     contact={
         "name": "Christos Karvouniaris",
