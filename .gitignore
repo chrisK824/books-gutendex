@@ -57,3 +57,5 @@ http_cache.sqlite
 # pytest results files
 assets/
 *.html
+
+._*
