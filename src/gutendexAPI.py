@@ -13,13 +13,14 @@ GUTENDEX_SESSION.headers.update({'Content-Type': 'application/json'})
 
 
 def search_books(keyword, page):
-    search_res = GUTENDEX_SESSION.get(f"{GUTENDEX_BASIC_URL}books?search={quote_plus(keyword)}&page={page}")
+    search_res = GUTENDEX_SESSION.get(
+        f"{GUTENDEX_BASIC_URL}books?search={quote_plus(keyword)}&page={page}")
     search_res_dict = search_res.json()
     result = {
-        "count" : search_res_dict['count'] if 'count' in search_res_dict else 0,
-        "next" : search_res_dict['next'] if 'next' in search_res_dict else None,
-        "previous" : search_res_dict['previous'] if 'previous' in search_res_dict else None,
-        "books" : search_res_dict['results'] if 'previous' in search_res_dict else []
+        "count": search_res_dict['count'] if 'count' in search_res_dict else 0,
+        "next": search_res_dict['next'] if 'next' in search_res_dict else None,
+        "previous": search_res_dict['previous'] if 'previous' in search_res_dict else None,
+        "books": search_res_dict['results'] if 'previous' in search_res_dict else []
     }
     return result
 
